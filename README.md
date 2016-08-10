@@ -7,7 +7,7 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'colorgy-course-period'
+gem 'colorgy-course-period', require: 'colorgy/course_period'
 ```
 
 And then execute:
@@ -33,7 +33,7 @@ Colorgy.time_class = Time.zone
 ## Usage
 
 ```ruby
-require 'colorgy/course_period'
+require 'colorgy/course_period' # Rails would auto require this
 
 period = Colorgy::CoursePeriod.find('ntust')
 
