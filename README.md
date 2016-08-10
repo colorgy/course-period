@@ -1,5 +1,7 @@
 # Colorgy 資料集：課程節次資料
 
+[![Gem Version](https://badge.fury.io/rb/colorgy-course-period.svg)](https://badge.fury.io/rb/colorgy-course-period)
+
 本專案整理了全臺各大專院校的課程資料，資料格式為 csv 檔，放在 [`lib/colorgy/course_period/data`](lib/colorgy/course_period/data) 底下，資料格式以 NTUST 為例：
 
 > `lib/colorgy/course_period/data/ntust.csv`
@@ -62,7 +64,7 @@ Colorgy.time_class = Time.zone
 ## 使用方法
 
 ```ruby
-require 'colorgy/course_period' # Rails would auto require
+require 'colorgy/course_period' # bundler would auto require
 
 period = Colorgy::CoursePeriod.find('ntust')
 
