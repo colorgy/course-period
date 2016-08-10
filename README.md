@@ -1,4 +1,4 @@
-# Colorgy::CoursePeriod
+# Colorgy 資料集：課程節次資料
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/colorgy/course/period`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -12,15 +12,41 @@ gem 'colorgy-course-period'
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install colorgy-course-period
+```bash
+$ gem install colorgy-course-period
+```
+
+## Config
+
+In Rails, create an initializer call `colorgy_course_period.rb` and with the following content
+
+```ruby
+Colorgy.time_class = Time.zone
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'colorgy/course_period'
+
+period = Colorgy::CoursePeriod.find('ntust')
+
+period.code_map
+# => {"0"=>1, "1"=>2, "2"=>3, "3"=>4, "4"=>5, "5"=>6, "6"=>7, "7"=>8, "8"=>9, "9"=>10, "10"=>11, "A"=>12, "B"=>13, "C"=>14, "D"=>15}
+period.order_map
+# => {1=>"0", 2=>"1", 3=>"2", 4=>"3", 5=>"4", 6=>"5", 7=>"6", 8=>"7", 9=>"8", 10=>"9", 11=>"10", 12=>"A", 13=>"B", 14=>"C", 15=>"D"}
+
+period.count
+# => 15
+period.first.start_time(Date.today)
+# => "20160810T071000Z"
+```
 
 ## Development
 
@@ -30,7 +56,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/colorgy-course-period. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Colorgy/colorgy-course-period. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
