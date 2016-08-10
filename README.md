@@ -1,39 +1,68 @@
 # Colorgy 資料集：課程節次資料
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/colorgy/course/period`. To experiment with that code, run `bin/console` for an interactive prompt.
+本專案整理了全臺各大專院校的課程資料，資料格式為 csv 檔，放在 [`lib/colorgy/course_period/data`](lib/colorgy/course_period/data) 底下，資料格式以 NTUST 為例：
 
-## Installation
+> `lib/colorgy/course_period/data/ntust.csv`
 
-Add this line to your application's Gemfile:
+```csv
+1,0,07:10-08:00
+2,1,08:10-09:00
+3,2,09:10-10:00
+4,3,10:20-11:10
+5,4,11:20-12:10
+6,5,12:20-13:10
+7,6,13:20-14:10
+8,7,14:20-15:10
+9,8,15:30-16:20
+10,9,16:30-17:20
+11,10,17:30-18:20
+12,A,18:25-19:15
+13,B,19:20-20:10
+14,C,20:10-21:05
+15,D,21:10-22:00
+```
+
+檔名為學校名稱小寫，第一欄為順序(`order`)，第二欄為節次代碼(`code`)，第三欄為時段字串。
+
+`order` 從 1 開始排列，代碼無特別限制；時段字串為二十四小時制、以減號 `-` 分隔。
+
+## 安裝
+
+把這行加入 Gemfile：
 
 ```ruby
+# or latest from github, prefer
+gem 'colorgy-course-period', require: 'colorgy/course_period', github: 'colorgy/course-period', branch: 'master'
+
+# from rubygems.org
 gem 'colorgy-course-period', require: 'colorgy/course_period'
 ```
 
-And then execute:
+
+然後執行：
 
 ```bash
 $ bundle
 ```
 
-Or install it yourself as:
+或是直接安裝：
 
 ```bash
 $ gem install colorgy-course-period
 ```
 
-## Config
+## 設定
 
-In Rails, create an initializer call `colorgy_course_period.rb` and with the following content
+在 Rails 裡, 在建立 `config/initializer/colorgy_course_period.rb` 並貼入以下內容：
 
 ```ruby
 Colorgy.time_class = Time.zone
 ```
 
-## Usage
+## 使用方法
 
 ```ruby
-require 'colorgy/course_period' # Rails would auto require this
+require 'colorgy/course_period' # Rails would auto require
 
 period = Colorgy::CoursePeriod.find('ntust')
 
